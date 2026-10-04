@@ -1,0 +1,162 @@
+/* Global visual system: cinematic motion, glass cards, focus states and theme support. */
+
+.theme-scope {
+  min-height: 100vh;
+  background: #0d0d0d;
+  color: #f5f5f4;
+  transition: background-color 300ms ease, color 300ms ease;
+}
+
+.theme-scope[data-theme="light"] {
+  background: #f5f4f1;
+  color: #999491;
+}
+
+.theme-scope[data-theme="light"] .bg-\[\#0d0d0d\] { background-color: #f5f4f1; }
+.theme-scope[data-theme="light"] .bg-\[\#111111\] { background-color: #fff; }
+.theme-scope[data-theme="light"] .glass-card { background: rgb(28 25 23 / 4%); border-color: rgb(28 25 23 / 12%); }
+.theme-scope[data-theme="light"] .text-white { color: #1c1917; }
+.theme-scope[data-theme="light"] .text-white\/80 { color: #44403c; }
+.theme-scope[data-theme="light"] .text-gray-200 { color: #292524; }
+.theme-scope[data-theme="light"] .text-gray-300 { color: #44403c; }
+.theme-scope[data-theme="light"] .text-gray-400 { color: #57534e; }
+.theme-scope[data-theme="light"] .text-gray-500 { color: #78716c; }
+
+/* Keep text white on dark photographic/gradient surfaces and primary buttons. */
+.theme-scope[data-theme="light"] header .text-white,
+.theme-scope[data-theme="light"] header .text-white\/80,
+.theme-scope[data-theme="light"] section[style*="background-image"] .text-white,
+.theme-scope[data-theme="light"] section[style*="background-image"] .text-gray-300,
+.theme-scope[data-theme="light"] .bg-gradient-to-r.text-white,
+.theme-scope[data-theme="light"] .bg-gradient-to-r .text-white,
+.theme-scope[data-theme="light"] .bg-orange-500.text-white { color: #fff; }
+
+/* Light-mode surfaces for elements that previously had fixed dark backgrounds. */
+.theme-scope[data-theme="light"] .bg-black\/75 { background-color: rgb(255 255 255 / 92%); }
+.theme-scope[data-theme="light"] .bg-\[\#111111\]\/95 { background-color: rgb(255 255 255 / 97%); }
+.theme-scope[data-theme="light"] .bg-black { background-color: #fff; }
+.theme-scope[data-theme="light"] nav { background: rgb(255 255 255 / 92%); }
+.theme-scope[data-theme="light"] footer { background: #fff; }
+
+/* Light-mode borders and translucent controls remain visible on pale surfaces. */
+.theme-scope[data-theme="light"] .border-white\/5,
+.theme-scope[data-theme="light"] .border-white\/10,
+.theme-scope[data-theme="light"] .border-white\/20 { border-color: rgb(28 25 23 / 12%); }
+.theme-scope[data-theme="light"] .bg-white\/5 { background-color: rgb(28 25 23 / 4%); }
+.theme-scope[data-theme="light"] .bg-black\/40 { background-color: rgb(0 0 0 / 45%); }
+.theme-scope[data-theme="light"] .hover\:bg-orange-500:hover { color: #fff; }
+
+/* Form controls need dark text in light mode for contrast. */
+.theme-scope[data-theme="light"] .form-input,
+.theme-scope[data-theme="light"] input,
+.theme-scope[data-theme="light"] textarea,
+.theme-scope[data-theme="light"] select {
+  color: #1c1917;
+  background-color: #fff;
+  border-color: rgb(28 25 23 / 16%);
+}
+.theme-scope[data-theme="light"] .form-input::placeholder,
+.theme-scope[data-theme="light"] input::placeholder,
+.theme-scope[data-theme="light"] textarea::placeholder { color: #78716c; }
+
+.glass-card {
+  border: 1px solid rgb(255 255 255 / 10%);
+  background: rgb(255 255 255 / 5%);
+  backdrop-filter: blur(12px);
+}
+
+.section-eyebrow {
+  font-size: 0.7rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: rgb(249 115 22);
+}
+
+.form-input {
+  width: 100%;
+  border-radius: 1rem;
+  border: 1px solid rgb(255 255 255 / 10%);
+  background: rgb(255 255 255 / 5%);
+  padding: 0.85rem 1rem;
+  font-size: 0.875rem;
+  color: white;
+  outline: none;
+  transition: border-color 200ms ease, background-color 200ms ease, transform 200ms ease;
+}
+
+.form-input:focus {
+  border-color: rgb(249 115 22 / 70%);
+  background: rgb(249 115 22 / 6%);
+}
+
+.form-input::placeholder { color: rgb(156 163 175); }
+
+.cinematic-grid {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 4%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 4%) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, black, transparent 90%);
+}
+
+.hero-orb {
+  position: absolute;
+  width: 22rem;
+  height: 22rem;
+  border-radius: 999px;
+  background: rgb(249 115 22 / 18%);
+  filter: blur(80px);
+  pointer-events: none;
+  animation: orb-float 9s ease-in-out infinite;
+}
+
+.hero-orb-one { right: -8rem; top: 12%; }
+.hero-orb-two { left: -10rem; bottom: 8%; animation-delay: -4s; }
+
+.animate-fade-up {
+  animation: fade-up 800ms cubic-bezier(.2,.8,.2,1) both;
+}
+
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+
+.mobile-menu {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: max-height 300ms ease, opacity 200ms ease, transform 300ms ease;
+}
+
+.mobile-menu-open {
+  max-height: 30rem;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes orb-float {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(0, 30px, 1px) scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .cinematic-grid { background-size: 32px 32px; }
+  .hero-orb { width: 15rem; height: 15rem; filter: blur(60px); }
+}
